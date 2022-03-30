@@ -1,7 +1,12 @@
 import pluginMeta from './Plugin.Meta';
 import PluginComponent from './PluginComponent.vue';
 
-import { PanelPlugin, InteractionSystemAdapter, EventSystemAdapter } from './../../DTCD-SDK/index';
+import {
+  PanelPlugin,
+  InteractionSystemAdapter,
+  EventSystemAdapter,
+  StyleSystemAdapter,
+} from './../../DTCD-SDK/index';
 
 export class Plugin extends PanelPlugin {
   static getRegistrationMeta() {
@@ -12,14 +17,19 @@ export class Plugin extends PanelPlugin {
     super();
     const eventSystem = new EventSystemAdapter('0.4.0', guid);
     const interactionSystem = new InteractionSystemAdapter('0.4.0');
+    const styleSystem = new StyleSystemAdapter('0.4.0');
+    
 
     const VueJS = this.getDependence('Vue');
 
     const data = { guid, interactionSystem, eventSystem, plugin: this };
 
-    new VueJS.default({
+    const vue = new VueJS.default({
       data: () => data,
       render: h => h(PluginComponent),
     }).$mount(selector);
+
+    styleSystem.setVariablesToElement(vue.$el, styleSystem.getCurrentTheme());
   }
 }
+
