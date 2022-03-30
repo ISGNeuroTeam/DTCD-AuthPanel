@@ -3,6 +3,7 @@ import vue from 'rollup-plugin-vue';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import json from '@rollup/plugin-json';
+import image from '@rollup/plugin-image';
 
 import styles from 'rollup-plugin-styles';
 import replace from '@rollup/plugin-replace';
@@ -47,6 +48,7 @@ const plugins = [
     'process.env.VUE_ENV': JSON.stringify('browser'),
   }),
   json(),
+  image(),
 ];
 
 export default {
