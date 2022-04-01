@@ -1,8 +1,8 @@
 <template>
   <div class="AuthPanel">
     <div class="SectionImage">
-      <!-- <img class="SectionImage_big" src="./images/background_big.png" alt="background">
-      <img class="SectionImage_small" src="./images/background_small.png" alt="background"> -->
+      <img class="SectionImage big_screen" src="./images/background_big.png" alt="background">
+      <img class="SectionImage small_screen" src="./images/background_small.png" alt="background">
     </div>
     <div class="SectionContent">
       <div class="SectionContainer">
@@ -19,27 +19,27 @@
         </svg>
         <span class="Annotation">DataCad is extensible data platform powers unified security, <br> full-stack observability and limitless custom applications</span>
         <form class="PanelWindow autorization">
-          <h1 class="Title">Авторизация</h1>
-          <base-input class="Input" ref="login" label="Имя пользователя" placeholder="Введите имя пользователя"></base-input>
-          <base-input class="Input" ref="password" label="Пароль" type="password" placeholder="Введите пароль"></base-input>
+          <h1 class="WindowTitle">Авторизация</h1>
+          <base-input class="WindowInput" ref="login" label="Имя пользователя" placeholder="Введите имя пользователя"></base-input>
+          <base-input class="WindowInput" ref="password" label="Пароль" type="password" placeholder="Введите пароль"></base-input>
           <base-checkbox checked>Запомнить меня</base-checkbox>
           <base-button class="ButtonForgotPassword" theme="theme_alfa">Забыли пароль?</base-button>
           <base-button size="big" width="full" @click="login">Войти</base-button>
         </form>
         <!--<form class="PanelWindow password_reset">
-          <h1 class="Title">Сброс пароля</h1>
-          <base-input class="Input" label="Электронная почта или имя пользователя" placeholder="Введите имя пользователя"></base-input>
-          <base-button size="big" width="full" @click="login">Сбросить пароль</base-button>
+          <h1 class="WindowTitle">Сброс пароля</h1>
+          <base-input class="WindowInput" label="Электронная почта или имя пользователя" placeholder="Введите имя пользователя"></base-input>
+          <base-button size="big" width="full">Сбросить пароль</base-button>
         </form>-->
         <!--<form class="PanelWindow registation">
-          <h1 class="Title">Регистрация</h1>
-          <base-input class="Input" ref="login" label="Ваше имя*" placeholder="Введите ваше имя"></base-input>
-          <base-input class="Input" label="Имя пользователя*" placeholder="Введите имя пользователя"></base-input>
-          <base-input class="Input" label="Название организации" placeholder="Введите название организации"></base-input>
-          <base-input class="Input" ref="password" label="Пароль*" type="password" placeholder="Введите пароль"></base-input>
-          <base-input class="Input" ref="password" label="Повторите пароль*" type="password" placeholder="Введите пароль еще раз"></base-input>
+          <h1 class="WindowTitle">Регистрация</h1>
+          <base-input class="WindowInput" ref="login" label="Ваше имя*" placeholder="Введите ваше имя"></base-input>
+          <base-input class="WindowInput" label="Имя пользователя*" placeholder="Введите имя пользователя"></base-input>
+          <base-input class="WindowInput" label="Название организации" placeholder="Введите название организации"></base-input>
+          <base-input class="WindowInput" ref="password" label="Пароль*" type="password" placeholder="Введите пароль"></base-input>
+          <base-input class="WindowInput" ref="password" label="Повторите пароль*" type="password" placeholder="Введите пароль еще раз"></base-input>
           <span class="Note">* – обязательное поле</span>
-          <base-button size="big" width="full" @click="login">Войти</base-button>
+          <base-button size="big" width="full">Зарегистрироваться</base-button>
         </form>-->
       </div>
     </div>
@@ -83,7 +83,7 @@ export default {
   font-family: 'Proxima Nova';
   margin: 0 auto;
 
-  @media (max-width: 840px) {
+  @media (max-width: 1000px) {
     flex-direction: column-reverse;
     padding-top: 250px;
   }
@@ -106,17 +106,11 @@ export default {
   }
 
   .SectionImage {
-    //background-image: url(../images/background_big.png);
-    // background-position: center;
-    // background-repeat: no-repeat;
-    // background-size: cover;
-    // height: 500px;
-    // background-color: aquamarine;
-    // width: 950px;
-    // min-width: 500px;
-     display: flex;
+    width: 950px;
+    min-width: 500px;
+    display: flex;
 
-    @media (max-width: 840px) {
+    @media (max-width: 1000px) {
       width: auto;
     }
 
@@ -124,22 +118,29 @@ export default {
       margin-top: -32%;  
     }
  
-    &_big {
+    &.big_screen {
       height: 1080px;
       width: 950px;
       min-width: 500px;
 
-      @media (max-width: 840px) {
+      @media (max-width: 1000px) {
         display: none;
       }
     }
 
-    &_small {
+    &.small_screen {
       display: none;
 
-      @media (max-width: 840px) {
+      @media (max-width: 1000px) {
         display: block;
-        height: 471px;
+        width: 1000px;
+        min-width: 360px;
+      }
+
+      @media (max-width: 600px) {
+        margin-top: -10%;
+        height: 600px;
+        width: auto;
       }
     }
   }
@@ -147,7 +148,7 @@ export default {
   .SectionContent {
     width: 970px;
 
-    @media (max-width: 840px) {
+    @media (max-width: 1000px) {
       width: auto; 
     }
 
@@ -188,14 +189,24 @@ export default {
         }
 
         &.password_reset {
-          margin-bottom: 141px;
+          @media (max-width: 1000px) {
+            margin-bottom: 141px; 
+          }
+          @media (max-width: 600px) {
+            margin-bottom: -3%; 
+          }
         }
 
         &.registation {
-          margin-bottom: -51%;
+          @media (max-width: 1000px) {
+            margin-bottom: -51%;
+          }
+          @media (max-width: 600px) {
+            margin-bottom: -9%; 
+          }
         }
 
-        .Title {
+        .WindowTitle {
           font-weight: 600;
           font-size: 24px;
           line-height: 1.25;
@@ -203,7 +214,7 @@ export default {
           margin: 0;
         }
 
-        .Input {
+        .WindowInput {
           padding-bottom: 16px;
         }
 
