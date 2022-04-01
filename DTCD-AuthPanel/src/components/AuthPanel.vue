@@ -18,20 +18,59 @@
           <path d="M117.018 37.9998C116.443 37.9998 115.817 37.9496 115.142 37.8492C114.48 37.7632 113.812 37.5695 113.136 37.2683C112.475 36.967 111.835 36.5438 111.217 35.9987C110.613 35.4393 110.074 34.7077 109.599 33.804C109.139 32.9003 108.766 31.7886 108.478 30.4688C108.205 29.1348 108.068 27.5497 108.068 25.7135V12.6957C108.068 10.8452 108.212 9.26727 108.5 7.96189C108.787 6.64218 109.168 5.53763 109.643 4.64825C110.117 3.74453 110.663 3.02729 111.282 2.49654C111.9 1.96578 112.539 1.56413 113.201 1.29158C113.862 1.00468 114.516 0.818199 115.163 0.73213C115.824 0.646062 116.435 0.603027 116.996 0.603027C118.463 0.603027 119.685 0.811027 120.662 1.22702C121.654 1.62868 122.445 2.18812 123.034 2.90536C123.638 3.60826 124.062 4.43308 124.307 5.37984C124.604 6.07602 125.132 8.53106 124.867 12.7817H119.756L119.692 10.9097C119.692 8.88713 119.469 7.37376 119.023 6.36963C118.578 5.36549 117.923 4.86342 117.061 4.86342C116.543 4.86342 116.09 4.96384 115.702 5.16466C115.314 5.36549 114.991 5.70977 114.732 6.19749C114.473 6.67087 114.272 7.30204 114.128 8.091C113.999 8.87996 113.934 9.86258 113.934 11.0388V27.8222C113.934 28.9698 113.984 29.9237 114.085 30.684C114.2 31.4443 114.38 32.0539 114.624 32.513C114.868 32.972 115.185 33.3019 115.573 33.5028C115.975 33.6892 116.457 33.7825 117.018 33.7825C117.377 33.7825 117.722 33.7036 118.053 33.5458C118.384 33.3737 118.671 33.1155 118.915 32.7712C119.174 32.4126 119.375 31.9679 119.519 31.4371C119.677 30.892 119.756 30.2537 119.756 29.5221V25.9287H124.867V29.3284C124.867 32.2835 124.192 34.4639 122.84 35.8696C121.489 37.2754 119.548 37.9855 117.018 37.9998Z" fill="#17569B"/>
         </svg>
         <span class="Annotation">DataCad is extensible data platform powers unified security, <br> full-stack observability and limitless custom applications</span>
-        <form class="PanelWindow autorization">
+
+        <form 
+          v-if="typeVisibleForm === 'autorization'"
+          class="PanelWindow autorization"
+        >
           <h1 class="WindowTitle">Авторизация</h1>
           <base-input class="WindowInput" ref="login" label="Имя пользователя" placeholder="Введите имя пользователя"></base-input>
           <base-input class="WindowInput" ref="password" label="Пароль" type="password" placeholder="Введите пароль"></base-input>
           <base-checkbox checked>Запомнить меня</base-checkbox>
-          <base-button class="ButtonForgotPassword" theme="theme_alfa">Забыли пароль?</base-button>
-          <base-button size="big" width="full" @click="login">Войти</base-button>
+          <base-button
+            class="ButtonForgotPassword"
+            theme="theme_alfa"
+            type="button"
+            @click="() => { toggleForms('password_reset') }"
+          >Забыли пароль?</base-button>
+          <base-button
+            size="big"
+            width="full"
+            type="button"
+            @click="login"
+          >Войти</base-button>
+          <base-button
+            theme="theme_alfa"
+            type="button"
+            @click="() => { toggleForms('registation') }"
+          >Зарегистрироваться</base-button>
         </form>
-        <!--<form class="PanelWindow password_reset">
+
+        <form
+          v-if="typeVisibleForm === 'password_reset'"
+          class="PanelWindow password_reset"
+        >
           <h1 class="WindowTitle">Сброс пароля</h1>
-          <base-input class="WindowInput" label="Электронная почта или имя пользователя" placeholder="Введите имя пользователя"></base-input>
-          <base-button size="big" width="full">Сбросить пароль</base-button>
-        </form>-->
-        <!--<form class="PanelWindow registation">
+          <base-input
+            class="WindowInput"
+            label="Электронная почта или имя пользователя"
+            placeholder="Введите имя пользователя"
+          ></base-input>
+          <base-button
+            size="big"
+            width="full"
+          >Сбросить пароль</base-button>
+          <base-button
+            theme="theme_alfa"
+            type="button"
+            @click="() => { toggleForms('autorization') }"
+          >Войти</base-button>
+        </form>
+
+        <form
+          v-if="typeVisibleForm === 'registation'"
+          class="PanelWindow registation"
+        >
           <h1 class="WindowTitle">Регистрация</h1>
           <base-input class="WindowInput" ref="login" label="Ваше имя*" placeholder="Введите ваше имя"></base-input>
           <base-input class="WindowInput" label="Имя пользователя*" placeholder="Введите имя пользователя"></base-input>
@@ -40,7 +79,12 @@
           <base-input class="WindowInput" ref="password" label="Повторите пароль*" type="password" placeholder="Введите пароль еще раз"></base-input>
           <span class="Note">* – обязательное поле</span>
           <base-button size="big" width="full">Зарегистрироваться</base-button>
-        </form>-->
+          <base-button
+            theme="theme_alfa"
+            type="button"
+            @click="() => { toggleForms('autorization') }"
+          >Войти</base-button>
+        </form>
       </div>
     </div>
   </div>
@@ -52,6 +96,7 @@ export default {
   data({ $root }) {
     return {
       plugin: $root.plugin,
+      typeVisibleForm: 'autorization',
     };
   },
   methods: {
@@ -69,6 +114,19 @@ export default {
 
       if (response) {
         this.plugin.getSystem('RouteSystem', '0.1.0').navigate('/workspaces');
+      }
+    },
+
+    toggleForms(typeTargetForm) {
+      switch (typeTargetForm) {
+        case 'password_reset':
+        case 'registation':
+          this.typeVisibleForm = typeTargetForm;
+          break;
+
+        default:
+          this.typeVisibleForm = 'autorization';
+          break;
       }
     },
   },
