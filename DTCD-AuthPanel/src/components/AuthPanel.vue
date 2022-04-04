@@ -1,11 +1,12 @@
 <template>
   <div class="AuthPanel">
-    <div class="SectionImage">
-      <img class="SectionImage big_screen" src="./images/background_big.png" alt="background">
-      <img class="SectionImage small_screen" src="./images/background_small.png" alt="background">
+    <div class="SectionBackgroundImage">
+      <img class="SectionBackgroundImage big_screen" src="./images/background_big.png" alt="background">
+      <img class="SectionBackgroundImage middle_screen" src="./images/background_middle.png" alt="background">
+      <img class="SectionBackgroundImage small_screen" src="./images/background_small.png" alt="background">
     </div>
-    <div class="SectionContent">
-      <div class="SectionContainer">
+    <div class="SectionMainContent">
+      <div class="ContentWrapper">
         <svg class="Logo" width="169" height="38" viewBox="0 0 169 38" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M18.6295 3.62461C18.6295 1.95584 19.9823 0.603027 21.6511 0.603027L24.6727 25.9363C24.6727 32.5988 19.2614 37.9998 12.5863 37.9998C5.91123 37.9998 0.5 32.5988 0.5 25.9363C0.5 19.2738 5.91123 13.8728 12.5863 13.8728C14.7878 13.8728 16.8518 14.4603 18.6295 15.4867V3.62461ZM21.6511 0.603027L24.6727 25.9295V3.62461C24.6727 1.95584 23.3199 0.603027 21.6511 0.603027ZM12.5864 31.9682C15.9239 31.9682 18.6295 29.2677 18.6295 25.9364C18.6295 22.6052 15.9239 19.9047 12.5864 19.9047C9.24883 19.9047 6.54321 22.6052 6.54321 25.9364C6.54321 29.2677 9.24883 31.9682 12.5864 31.9682Z" fill="#0579F7"/>
           <path fill-rule="evenodd" clip-rule="evenodd" d="M15.608 4.52393C13.9392 4.52393 12.5864 5.87673 12.5864 7.54551V19.9047C12.5865 19.9047 12.5865 19.9047 12.5865 19.9047C15.9139 19.9047 18.6133 22.5889 18.6296 25.9062V7.54551C18.6296 5.87673 17.2768 4.52393 15.608 4.52393Z" fill="#459BF7"/>
@@ -19,13 +20,13 @@
         </svg>
         <span class="Annotation">DataCad is extensible data platform powers unified security, <br> full-stack observability and limitless custom applications</span>
 
-        <form 
+        <form
           v-if="typeVisibleForm === 'autorization'"
-          class="PanelWindow autorization"
+          class="Form autorization"
         >
-          <h1 class="WindowTitle">Авторизация</h1>
-          <base-input class="WindowInput" ref="login" label="Имя пользователя" placeholder="Введите имя пользователя"></base-input>
-          <base-input class="WindowInput" ref="password" label="Пароль" type="password" placeholder="Введите пароль"></base-input>
+          <h1 class="FormTitle">Авторизация</h1>
+          <base-input class="FieldInput" ref="login" label="Имя пользователя" placeholder="Введите имя пользователя"></base-input>
+          <base-input class="FieldInput" ref="password" label="Пароль" type="password" placeholder="Введите пароль"></base-input>
           <base-checkbox checked>Запомнить меня</base-checkbox>
           <base-button
             class="ButtonForgotPassword"
@@ -34,25 +35,27 @@
             @click="() => { toggleForms('password_reset') }"
           >Забыли пароль?</base-button>
           <base-button
-            size="big"
             width="full"
             type="button"
             @click="login"
           >Войти</base-button>
-          <base-button
-            theme="theme_alfa"
-            type="button"
-            @click="() => { toggleForms('registation') }"
-          >Зарегистрироваться</base-button>
+          <div class="FormFooter">
+            <span class="TextNote">Еще нет аккаунта?</span>
+            <base-button
+              theme="theme_alfa"
+              type="button"
+              @click="() => { toggleForms('registation') }"
+            >Зарегистрироваться</base-button>
+          </div>
         </form>
 
         <form
           v-if="typeVisibleForm === 'password_reset'"
-          class="PanelWindow password_reset"
+          class="Form password_reset"
         >
-          <h1 class="WindowTitle">Сброс пароля</h1>
+          <h1 class="FormTitle">Сброс пароля</h1>
           <base-input
-            class="WindowInput"
+            class="FieldInput"
             label="Электронная почта или имя пользователя"
             placeholder="Введите имя пользователя"
           ></base-input>
@@ -60,30 +63,36 @@
             size="big"
             width="full"
           >Сбросить пароль</base-button>
-          <base-button
+          <base-button class="BottomButton"
             theme="theme_alfa"
+            size="small"
             type="button"
             @click="() => { toggleForms('autorization') }"
-          >Войти</base-button>
+          ><svg slot="icon-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.28809 12L14.2981 18.01L15.7121 16.596L11.1121 11.996L15.7121 7.39599L14.2981 5.98999L8.28809 12Z" fill="#0579F7"/>
+          </svg>Вернуться на страницу авторизации</base-button>
         </form>
 
         <form
           v-if="typeVisibleForm === 'registation'"
-          class="PanelWindow registation"
+          class="Form registation"
         >
-          <h1 class="WindowTitle">Регистрация</h1>
-          <base-input class="WindowInput" ref="login" label="Ваше имя*" placeholder="Введите ваше имя"></base-input>
-          <base-input class="WindowInput" label="Имя пользователя*" placeholder="Введите имя пользователя"></base-input>
-          <base-input class="WindowInput" label="Название организации" placeholder="Введите название организации"></base-input>
-          <base-input class="WindowInput" ref="password" label="Пароль*" type="password" placeholder="Введите пароль"></base-input>
-          <base-input class="WindowInput" ref="password" label="Повторите пароль*" type="password" placeholder="Введите пароль еще раз"></base-input>
+          <h1 class="FormTitle">Регистрация</h1>
+          <base-input class="FieldInput" ref="login" label="Ваше имя*" placeholder="Введите ваше имя"></base-input>
+          <base-input class="FieldInput" label="Имя пользователя*" placeholder="Введите имя пользователя"></base-input>
+          <base-input class="FieldInput" label="Название организации" placeholder="Введите название организации"></base-input>
+          <base-input class="FieldInput" ref="password" label="Пароль*" type="password" placeholder="Введите пароль"></base-input>
+          <base-input class="FieldInput" ref="password" label="Повторите пароль*" type="password" placeholder="Введите пароль еще раз"></base-input>
           <span class="Note">* – обязательное поле</span>
           <base-button size="big" width="full">Зарегистрироваться</base-button>
-          <base-button
-            theme="theme_alfa"
-            type="button"
-            @click="() => { toggleForms('autorization') }"
-          >Войти</base-button>
+          <div class="FormFooter">
+            <span class="TextNote">Уже есть аккаунт?</span>
+            <base-button
+              theme="theme_alfa"
+              type="button"
+              @click="() => { toggleForms('autorization') }"
+            >Войти</base-button>
+          </div>
         </form>
       </div>
     </div>
@@ -163,25 +172,35 @@ export default {
     }
   }
 
-  .SectionImage {
-    width: 950px;
-    min-width: 500px;
+  .SectionBackgroundImage {
+    width: 98%;
     display: flex;
 
     @media (max-width: 1000px) {
-      width: auto;
+      width: 100%;
+      position: absolute;
+      top: 91%;
     }
 
-    @media (max-width: 600px) {
-      margin-top: -32%;  
+    @media (max-width: 600px) { 
+      position: static;
     }
  
     &.big_screen {
-      height: 1080px;
-      width: 950px;
-      min-width: 500px;
 
       @media (max-width: 1000px) {
+        display: none;
+      }
+    }
+
+    &.middle_screen {
+      display: none;
+
+      @media (max-width: 1000px) {
+        display: block;
+      }
+
+      @media (max-width: 600px) {
         display: none;
       }
     }
@@ -189,35 +208,27 @@ export default {
     &.small_screen {
       display: none;
 
-      @media (max-width: 1000px) {
+       @media (max-width: 600px) {
         display: block;
-        width: 1000px;
-        min-width: 360px;
-      }
-
-      @media (max-width: 600px) {
-        margin-top: -10%;
-        height: 600px;
-        width: auto;
+        margin-top: -68%;
       }
     }
   }
 
-  .SectionContent {
-    width: 970px;
+  .SectionMainContent {
+    width: 100%;
+    z-index: 1;
 
     @media (max-width: 1000px) {
       width: auto; 
+      padding: 0 20px;
     }
 
-    .SectionContainer {
-      width: 397px;
+    .ContentWrapper {
+      max-width: 397px;
+      min-width: 320px;
       text-align: center;
       margin: 0 auto;
-
-      @media (max-width: 600px) {
-        width: 320px;
-      }
 
       .Annotation {
         display: inline-block;
@@ -231,40 +242,31 @@ export default {
         }
       }
 
-      .PanelWindow {
+      .Form {
         text-align: left;
         background-color: var(--background_main);
         padding: 32px;
         box-shadow: 1px 1px 2px rgba(8, 18, 55, 0.12), 0px 4px 12px rgba(8, 18, 55, 0.12);
         border-radius: 16px;
 
-        &.autorization{
-          margin-bottom: 39px;
+        .FormFooter {
+          padding-top: 16px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
 
-          @media (max-width: 600px) {
-            margin-bottom: 0;
+          .TextNote {
+            color: var(--text_secondary);
+            font-size: 13px;
+            padding-right: 5px;
           }
         }
-
-        &.password_reset {
-          @media (max-width: 1000px) {
-            margin-bottom: 141px; 
-          }
-          @media (max-width: 600px) {
-            margin-bottom: -3%; 
-          }
+        
+        .BottomButton {
+          padding-top: 16px;
         }
 
-        &.registation {
-          @media (max-width: 1000px) {
-            margin-bottom: -51%;
-          }
-          @media (max-width: 600px) {
-            margin-bottom: -9%; 
-          }
-        }
-
-        .WindowTitle {
+        .FormTitle {
           font-weight: 600;
           font-size: 24px;
           line-height: 1.25;
@@ -272,7 +274,7 @@ export default {
           margin: 0;
         }
 
-        .WindowInput {
+        .FieldInput {
           padding-bottom: 16px;
         }
 
