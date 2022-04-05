@@ -66,14 +66,19 @@
             size="big"
             width="full"
           >Сбросить пароль</base-button>
-          <base-button class="BottomButton"
-            theme="theme_alfa"
-            size="small"
-            type="button"
-            @click="() => { toggleForms('autorization') }"
-          ><svg slot="icon-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8.28809 12L14.2981 18.01L15.7121 16.596L11.1121 11.996L15.7121 7.39599L14.2981 5.98999L8.28809 12Z" fill="#0579F7"/>
-          </svg>Вернуться на страницу авторизации</base-button>
+          <div class="FormFooter">
+            <base-button
+              theme="theme_alfa"
+              size="small"
+              type="button"
+              @click="() => { toggleForms('autorization') }"
+            >
+              <svg slot="icon-left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.28809 12L14.2981 18.01L15.7121 16.596L11.1121 11.996L15.7121 7.39599L14.2981 5.98999L8.28809 12Z" fill="#0579F7"/>
+              </svg>
+              Вернуться на страницу авторизации
+            </base-button>
+          </div>
         </form>
 
         <form
@@ -156,11 +161,11 @@ export default {
   $xxl: 1400px;
 
   display: flex;
-  align-items: center;
   font-family: 'Proxima Nova';
-  margin: 0 auto;
   min-height: 100vh;
+  width: 100vw;
   position: relative;
+  overflow: hidden;
 
   @media (max-width: $lg) {
     flex-direction: column-reverse;
@@ -177,7 +182,7 @@ export default {
   .SectionMainContent {
     @media (min-width: $lg) {
       width: 50%;
-      height: 100%;
+      min-height: 100%;
     }
   }
 
@@ -187,7 +192,6 @@ export default {
     overflow: hidden;
 
     @media (max-width: $lg) {
-      width: 100%;
       overflow: visible;
     }
 
@@ -223,37 +227,23 @@ export default {
   
         @media (max-width: $sm) {
           display: block;
+          transform: translate(-50%, 50%);
         }
       }
     }
   }
 
   .SectionMainContent {
-    padding-left: 20px;
-    padding-right: 20px;
-    //padding-top: 18.5%;
-    padding-top: 10.4%;
-    padding-bottom: 32px;
+    display: flex;
+    padding: 32px 20px;
+    margin: auto;
     z-index: 1;
-
-    @media (max-width: $lg) {
-      width: auto;
-      height: 100%;
-    }
-
-    @media (max-width: $md) {
-      padding-top: 32.5%; 
-    }
-
-    @media (max-height: $lg) {
-      padding-top: 2%; 
-    }
   }
 
   .ContentWrapper {
     max-width: 397px;
-    margin: 0 auto;
-  } 
+    margin: auto;
+  }
 
   .Annotation {
     text-align: center;
@@ -275,6 +265,13 @@ export default {
     box-shadow: 1px 1px 2px rgba(8, 18, 55, 0.12), 0px 4px 12px rgba(8, 18, 55, 0.12);
     border-radius: 16px;
 
+    .FormTitle,
+    .ForgotPassword,
+    .FieldInput,
+    .Note {
+      padding-bottom: 16px;
+    }
+
     .FormFooter {
       padding-top: 16px;
       display: flex;
@@ -283,42 +280,33 @@ export default {
       flex-wrap: wrap;
       column-gap: 5px;
       row-gap: 10px;
-
-      .TextNote {
-        color: var(--text_secondary);
-        font-size: 13px;
-      }
     }
-    
-    .BottomButton {
-      padding-top: 16px;
+
+    .TextNote {
+      color: var(--text_secondary);
+      font-size: 13px;
     }
 
     .FormTitle {
       font-weight: 600;
       font-size: 24px;
       line-height: 1.25;
-      padding-bottom: 16px;
       margin: 0;
-    }
-
-    .FieldInput {
-      padding-bottom: 16px;
     }
 
     .ForgotPassword {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 16px;
+      flex-wrap: wrap;
+      column-gap: 5px;
+      row-gap: 10px;
     }
 
     .Note {
       font-size: 15px;
-      line-height: 18;
       color: var(--text_secondary);
       line-height: 1.2;
-      padding-bottom: 16px;
       display: inline-block;
     }
   }

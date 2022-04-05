@@ -28,8 +28,6 @@ export class Plugin extends PanelPlugin {
       data: () => data,
       render: h => h(PluginComponent),
     }).$mount(selector);
-
-    styleSystem.setVariablesToElement(vue.$el, styleSystem.getCurrentTheme());
   }
 }
 
