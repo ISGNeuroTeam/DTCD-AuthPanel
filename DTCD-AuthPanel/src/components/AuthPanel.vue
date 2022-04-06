@@ -162,7 +162,7 @@ export default {
 
   display: flex;
   font-family: 'Proxima Nova';
-  min-height: 100vh;
+  height: 100%;
   width: 100vw;
   position: relative;
   overflow: hidden;
