@@ -153,7 +153,7 @@ export default {
 <style lang="scss"scoped>
 
 .AuthPanel {
-  $xs: 0;
+  $xs: 360px;
   $sm: 576px;
   $md: 768px;
   $lg: 992px;
@@ -229,6 +229,14 @@ export default {
           display: block;
           transform: translate(-50%, 50%);
         }
+
+        @media (max-width: $sm) {
+          transform: translate(-50%, 30%);
+        }
+
+        @media (max-width: $xs) {
+          transform: translate(-50%, 0%);
+        }
       }
     }
   }
@@ -238,6 +246,13 @@ export default {
     padding: 32px 20px;
     margin: auto;
     z-index: 1;
+
+    @media (max-width: $md) {
+      margin-top: 26%;
+    }
+    @media (max-width: $xs) {
+      margin-top: 32px;
+    }
   }
 
   .ContentWrapper {
