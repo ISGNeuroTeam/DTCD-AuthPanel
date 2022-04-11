@@ -29,27 +29,27 @@
           <h1 class="FormTitle">Авторизация</h1>
           <base-input class="FieldInput" ref="login" label="Имя пользователя" placeholder="Введите имя пользователя"></base-input>
           <base-input class="FieldInput" ref="password" label="Пароль" type="password" placeholder="Введите пароль"></base-input>
-          <div class="ForgotPassword">
+          <!-- <div class="ForgotPassword">
             <base-checkbox checked>Запомнить меня</base-checkbox>
             <base-button
             theme="theme_alfa"
             type="button"
             @click="() => { toggleForms('password_reset') }"
             >Забыли пароль?</base-button>
-          </div>
+          </div> -->
           <base-button
             width="full"
             type="button"
             @click="login"
           >Войти</base-button>
-          <div class="FormFooter">
+          <!-- <div class="FormFooter">
             <span class="TextNote">Еще нет аккаунта?</span>
             <base-button
               theme="theme_alfa"
               type="button"
               @click="() => { toggleForms('registation') }"
             >Зарегистрироваться</base-button>
-          </div>
+          </div> -->
         </form>
 
         <form
