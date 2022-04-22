@@ -166,6 +166,7 @@ export default {
   width: 100vw;
   position: relative;
   overflow: hidden;
+  background-color: var(--background_secondary);
 
   @media (max-width: $lg) {
     flex-direction: column-reverse;
@@ -307,6 +308,7 @@ export default {
       font-size: 24px;
       line-height: 1.25;
       margin: 0;
+      color: var(--title);
     }
 
     .ForgotPassword {
