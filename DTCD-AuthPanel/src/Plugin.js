@@ -17,8 +17,7 @@ export class Plugin extends PanelPlugin {
     super();
     const eventSystem = new EventSystemAdapter('0.4.0', guid);
     const interactionSystem = new InteractionSystemAdapter('0.4.0');
-    const styleSystem = new StyleSystemAdapter('0.4.0');
-    
+    const styleSystem = new StyleSystemAdapter('0.5.0');
 
     const VueJS = this.getDependence('Vue');
 
@@ -30,4 +29,3 @@ export class Plugin extends PanelPlugin {
     }).$mount(selector);
   }
 }
-
