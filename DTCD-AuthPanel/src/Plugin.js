@@ -2,13 +2,13 @@ import pluginMeta from './Plugin.Meta';
 import PluginComponent from './PluginComponent.vue';
 
 import {
-  PanelPlugin,
+  AppPanelPlugin,
   InteractionSystemAdapter,
   EventSystemAdapter,
   StyleSystemAdapter,
 } from './../../DTCD-SDK/index';
 
-export class Plugin extends PanelPlugin {
+export class Plugin extends AppPanelPlugin {
   static getRegistrationMeta() {
     return pluginMeta;
   }
