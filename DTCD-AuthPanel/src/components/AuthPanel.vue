@@ -175,6 +175,8 @@ export default {
   
         if (response) {
           this.plugin.getSystem('RouteSystem', '0.1.0').navigate('/workspaces');
+        } else {
+          this.errorMessage = 'Неверное имя пользователя или пароль.';
         }
       } catch (error) {
         this.errorMessage = 'Неверное имя пользователя или пароль.';
