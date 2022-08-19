@@ -42,6 +42,7 @@ build: $(PROJECT_NAME)/node_modules COMPONENTS
 	cp CHANGELOG.md ./build/
 	cp LICENSE.md ./build/;
 	mkdir ./build/$(PROJECT_NAME)_$(VERSION) && mv ./build/$(PLUGIN_NAME).js ./build/$(PROJECT_NAME)_$(VERSION);
+	mv ./build/images ./build/$(PROJECT_NAME)_$(VERSION)
 	if [ -d ./$(PROJECT_NAME)/dependencies/ ];\
 		then echo Prepare dependencies for $(PROJECT_NAME)_$(VERSION) in build directory...;\
 		cp -r ./$(PROJECT_NAME)/dependencies ./build/$(PROJECT_NAME)_$(VERSION);\

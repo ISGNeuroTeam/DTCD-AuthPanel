@@ -1,9 +1,9 @@
 <template>
   <div class="AuthPanel">
     <div class="SectionBackground">
-      <img class="BackgroundImage size_big" src="./images/background_big.png" alt="background">
-      <img class="BackgroundImage size_middle" src="./images/background_middle.png" alt="background">
-      <img class="BackgroundImage size_small" src="./images/background_small.png" alt="background">
+      <img class="BackgroundImage size_big" src="/components/images/background_big.png" alt="background">
+      <img class="BackgroundImage size_middle" src="/components/images/background_middle.png" alt="background">
+      <img class="BackgroundImage size_small" src="/components/images/background_small.png" alt="background">
     </div>
     <div class="SectionMainContent">
       <div class="ContentWrapper">

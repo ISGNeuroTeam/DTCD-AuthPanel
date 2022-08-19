@@ -4,6 +4,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import json from '@rollup/plugin-json';
 import image from '@rollup/plugin-image';
+import copy from 'rollup-plugin-copy';
 
 import styles from 'rollup-plugin-styles';
 import replace from '@rollup/plugin-replace';
@@ -22,6 +23,16 @@ const outputDirectory = watch
   : `./build`;
 
 const plugins = [
+  replace({
+    exclude: 'node_modules/**',
+    preventAssignment: true,
+    delimiters: ['', ''],
+    values: {
+      'process.env.NODE_ENV': JSON.stringify('production'),
+      'process.env.VUE_ENV': JSON.stringify('browser'),
+      '/components/images/': `/plugins/DTCD-${pluginName}_${version}/images/`,
+    },
+  }),
   resolve({
     jsnext: true,
     preferBuiltins: true,
@@ -42,13 +53,11 @@ const plugins = [
     mode: 'inject',
     modules: true,
   }),
-  replace({
-    preventAssignment: true,
-    'process.env.NODE_ENV': JSON.stringify('production'),
-    'process.env.VUE_ENV': JSON.stringify('browser'),
-  }),
   json(),
   image(),
+  copy({
+    targets: [{ src: './src/components/images/*', dest: `./build/images` }],
+  }),
 ];
 
 export default {
