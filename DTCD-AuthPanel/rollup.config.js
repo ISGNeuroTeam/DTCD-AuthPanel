@@ -30,7 +30,7 @@ const plugins = [
     values: {
       'process.env.NODE_ENV': JSON.stringify('production'),
       'process.env.VUE_ENV': JSON.stringify('browser'),
-      '/components/images/': `/plugins/DTCD-${pluginName}_${version}/images/`,
+      '/img/': `/plugins/DTCD-${pluginName}_${version}/images/`,
     },
   }),
   resolve({
@@ -56,7 +56,7 @@ const plugins = [
   json(),
   image(),
   copy({
-    targets: [{ src: './src/components/images/*', dest: `./build/images` }],
+    targets: [{ src: './src/img/*', dest: `./build/images` }],
   }),
 ];
 
